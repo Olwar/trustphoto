@@ -10,7 +10,19 @@ updates:
     directory: /
     schedule:
       interval: monthly
+    # Minor and patch updates only, in one group. React, React Native and Expo move together with an Expo
+    # SDK upgrade, which is done by hand (the root package.json pins them with overrides).
     groups:
       npm:
         patterns: ['*']
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: react
+      - dependency-name: react-dom
+      - dependency-name: react-native
+      - dependency-name: 'expo'
+      - dependency-name: 'expo-*'
+      - dependency-name: '@expo/*'
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
     open-pull-requests-limit: 1

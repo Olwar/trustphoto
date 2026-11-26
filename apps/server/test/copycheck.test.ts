@@ -1,6 +1,6 @@
 /**
  * "Check a photo" for copies that are not the same file: the whole flow that
- * the website runs (shared/copycheck.ts `checkFile`) against the real server
+ * the website runs (packages/shared/src/copycheck.ts `checkFile`) against the real server
  * over its two lookup routes. Only the decoder differs: sharp here, a canvas
  * in the browser.
  */

@@ -88,7 +88,7 @@ export const NOT_VERIFIED_MESSAGES: Record<NotVerifiedReason, string> = {
   screen: 'This looks like a photo of a screen. Take a photo of the real scene.',
   blank: 'The photo is too dark or shows no detail. Add light and try again.',
   motion: 'The motion at the shot did not look like a phone in a hand. Hold the phone in your hand and take a new photo.',
-  device: 'We could not confirm this phone with Apple or Google. Check the connection and take a new photo. A modified phone cannot make proofs.',
+  device: 'We could not confirm this phone with Apple or Google. Check the connection and take a new photo. A modified phone usually cannot pass this check.',
   clock: 'The clock on your phone is wrong. Set the date and time to automatic.',
   stale: 'This photo is too old to verify, or the clock on your phone is wrong. Set the date and time to automatic, then take a new photo.',
   checks: 'This photo did not pass all checks. Try again.',

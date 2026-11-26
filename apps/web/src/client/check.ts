@@ -1,7 +1,7 @@
 /**
  * "Check a photo": the browser makes fingerprints of the chosen file (its
  * SHA-256, its pHash and codes of its fine detail) and sends only those. The
- * photo never leaves the device. The steps are in shared/copycheck.ts.
+ * photo never leaves the device. The steps are in packages/shared/src/copycheck.ts.
  */
 
 import { checkFile, type CheckOutcome } from '@trustphoto/shared/copycheck';

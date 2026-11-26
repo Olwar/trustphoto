@@ -24,9 +24,9 @@ and videos taken in its own camera.
    part after the shot breaks the signature.
 3. **The server checks the upload.** The number is fresh and unused, the hash
    matches, the device check verifies, the same photo or motion was never sent
-   before, and the photo checks pass (they look for signs of a photo of a
-   screen, an edited file or motion that is not a phone in a hand; see
-   [docs/PHOTO-CHECKS.md](docs/PHOTO-CHECKS.md)).
+   before, and the photo checks pass (on the TrustPhoto service they look for
+   signs of a photo of a screen, an edited file or motion that is not a phone
+   in a hand; see [docs/PHOTO-CHECKS.md](docs/PHOTO-CHECKS.md)).
 4. **The server publishes a proof.** A public page `/p/<id>` shows a copy of
    the photo with no metadata, the phone model, the time, and a receipt signed
    with Ed25519.
