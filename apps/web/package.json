@@ -16,8 +16,8 @@
     "@trustphoto/shared": "*"
   },
   "devDependencies": {
-    "esbuild": "^0.25.0",
-    "typescript": "~5.9.2",
+    "esbuild": "^0.28.2",
+    "typescript": "~7.0.2",
     "vitest": "^5.1.2"
   }
 }
