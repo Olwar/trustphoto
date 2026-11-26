@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.env
+.data/
+apps/web/public/assets/*.js
+apps/web/public/assets/*.js.map
+apps/mobile/.expo/
+apps/mobile/ios/
+apps/mobile/android/
+*.log
+.DS_Store
+
+# Not part of the public repository: a private photo checks module and local agent rules
+apps/server/private/
+CLAUDE.local.md

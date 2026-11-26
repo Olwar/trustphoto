@@ -1,0 +1,47 @@
+{
+  "name": "@trustphoto/mobile",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TrustPhoto phone app (Expo)",
+  "license": "Apache-2.0",
+  "main": "expo-router/entry",
+  "scripts": {
+    "start": "expo start",
+    "ios": "expo run:ios",
+    "android": "expo run:android",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@expo/app-integrity": "55.0.14",
+    "@trustphoto/shared": "*",
+    "expo": "~55.0.5",
+    "expo-application": "~55.0.9",
+    "expo-camera": "~55.0.9",
+    "expo-clipboard": "~55.0.9",
+    "expo-constants": "~55.0.7",
+    "expo-crypto": "~55.0.9",
+    "expo-device": "^55.0.15",
+    "expo-file-system": "~55.0.16",
+    "expo-haptics": "^55.0.9",
+    "expo-image": "~55.0.6",
+    "expo-linking": "~55.0.7",
+    "expo-network": "~55.0.0",
+    "expo-router": "~55.0.4",
+    "expo-secure-store": "~55.0.8",
+    "expo-sensors": "~55.0.8",
+    "expo-status-bar": "~55.0.4",
+    "expo-symbols": "~55.0.9",
+    "expo-system-ui": "~55.0.9",
+    "expo-web-browser": "~55.0.14",
+    "react": "19.2.0",
+    "react-native": "0.83.10",
+    "react-native-safe-area-context": "~5.6.2",
+    "react-native-screens": "~4.23.0"
+  },
+  "devDependencies": {
+    "@types/react": "~19.2.2",
+    "typescript": "~5.9.2",
+    "vitest": "^5.1.2"
+  }
+}

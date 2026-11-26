@@ -1,0 +1,16 @@
+version: 2
+updates:
+  # The CI actions are pinned by commit; this keeps the pins current.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+  # npm packages: one grouped pull request a month (CI also runs npm audit on each change).
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      npm:
+        patterns: ['*']
+    open-pull-requests-limit: 1

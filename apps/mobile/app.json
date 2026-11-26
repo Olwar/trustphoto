@@ -1,0 +1,61 @@
+{
+  "expo": {
+    "name": "TrustPhoto",
+    "slug": "trustphoto",
+    "scheme": "trustphoto",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "icon": "./assets/icon.png",
+    "ios": {
+      "bundleIdentifier": "com.socialhuman.trustphoto",
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSMotionUsageDescription": "TrustPhoto reads the motion sensors while the camera is open. The motion helps show that a phone in a hand took the photo.",
+        "NSPhotoLibraryAddUsageDescription": "TrustPhoto saves a photo to your library only when you choose Save Image. It never reads your library."
+      },
+      "entitlements": {
+        "com.apple.developer.devicecheck.appattest-environment": "production"
+      },
+      "buildNumber": "1"
+    },
+    "android": {
+      "package": "com.socialhuman.trustphoto",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#1A7F37"
+      },
+      "blockedPermissions": [
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.CAMERA"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "TrustPhoto takes photos with the camera. It never reads your photo library.",
+          "microphonePermission": false,
+          "recordAudioAndroid": false
+        }
+      ],
+      "expo-secure-store"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "d0942ce9-493f-4751-8690-58a7044e023b"
+      }
+    },
+    "owner": "olwar"
+  }
+}

@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  # Only a newer push to the same pull request cancels a run; every push to main runs to the end.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  test:
+    name: Type check, build and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Known advisories in the libraries that the server, the website and the browser scripts ship with.
+      # (The phone app's build tools come from Expo and are audited with each Expo upgrade.)
+      - run: npm audit --omit=dev -w apps/server -w apps/web -w packages/shared
+      - run: npm run typecheck
+      - run: npm run build
+      # The server tests run with the reference photo checks: the private module is not in this repository.
+      - run: npm test
+
+  postgres:
+    name: Server tests on Postgres and S3
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_PASSWORD: test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+      s3:
+        image: adobe/s3mock:5.2.3
+        env:
+          COM_ADOBE_TESTING_S3MOCK_STORE_INITIAL_BUCKETS: trustphoto-test
+        ports:
+          - 9090:9090
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build -w apps/web
+      - run: npm test -w apps/server
+        env:
+          TEST_DATABASE_URL: postgres://postgres:test@127.0.0.1:5432/postgres
+          TEST_S3_ENDPOINT: http://127.0.0.1:9090
+
+  docker:
+    name: Docker image starts
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - run: docker build -t trustphoto .
+      # With no settings, a production start must stop at the settings check (so every module loaded).
+      - run: |
+          set +e
+          out=$(docker run --rm trustphoto 2>&1)
+          echo "$out"
+          echo "$out" | grep -q "Missing production settings"

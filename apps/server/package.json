@@ -1,0 +1,44 @@
+{
+  "name": "@trustphoto/server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TrustPhoto API, verification and website routes",
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch --clear-screen=false src/index.ts",
+    "start": "node dist/index.js",
+    "build": "node build.mjs",
+    "test": "vitest run",
+    "test:reference": "PHOTO_CHECKS_MODULE=reference vitest run --exclude 'private/**' --exclude '**/node_modules/**'",
+    "typecheck": "tsc --noEmit",
+    "demo": "npm --prefix ../web run build && tsx scripts/demo.ts",
+    "moderate": "tsx scripts/moderate.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.700.0",
+    "@bradford-tech/supabase-integrity-attest": "0.8.2",
+    "@electric-sql/pglite": "^0.3.0",
+    "@fastify/helmet": "^13.0.2",
+    "@fastify/multipart": "^10.1.9",
+    "@fastify/rate-limit": "^11.3.0",
+    "@fastify/static": "^10.1.12",
+    "@trustphoto/shared": "*",
+    "@trustphoto/web": "*",
+    "exifr": "^7.1.3",
+    "fastify": "^5.12.8",
+    "jose": "^5.9.6",
+    "pg": "^8.13.0",
+    "sharp": "^0.35.5",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.11.10",
+    "cborg": "^6.2.1",
+    "esbuild": "^0.25.0",
+    "tsx": "^4.19.0",
+    "typescript": "~5.9.2",
+    "vitest": "^5.1.2"
+  }
+}

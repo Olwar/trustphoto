@@ -1,0 +1,11 @@
+**/node_modules
+**/dist
+.git
+**/.data
+**/.env
+apps/mobile/android
+apps/mobile/ios
+apps/mobile/.expo
+apps/web/public/assets/*.js
+apps/web/public/assets/*.js.map
+**/*.log

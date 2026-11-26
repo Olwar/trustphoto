@@ -1,0 +1,36 @@
+{
+  "name": "trustphoto",
+  "private": true,
+  "description": "A camera app that gives each photo a public, signed proof page",
+  "license": "Apache-2.0",
+  "author": "SocialHuman Technologies Oy",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Olwar/trustphoto.git"
+  },
+  "homepage": "https://trustphoto.fly.dev",
+  "bugs": {
+    "url": "https://github.com/Olwar/trustphoto/issues"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/server",
+    "apps/web",
+    "apps/mobile"
+  ],
+  "scripts": {
+    "dev": "npm run build -w apps/web && npm run dev -w apps/server",
+    "build": "npm run build -w apps/web && npm run build -w apps/server",
+    "test": "npm test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "overrides": {
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "expo-font": "~55.0.8",
+    "react-native": "0.83.10"
+  }
+}
